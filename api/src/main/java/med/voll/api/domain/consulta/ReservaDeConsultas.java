@@ -1,0 +1,54 @@
+package med.voll.api.domain.consulta;
+
+import jakarta.validation.ValidationException;
+import med.voll.api.domain.ValidacionException;
+import med.voll.api.domain.medico.Medico;
+import med.voll.api.domain.medico.MedicoRepository;
+import med.voll.api.domain.paciente.PacienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ReservaDeConsultas {
+
+    @Autowired
+    private MedicoRepository medicoRepository;
+
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private ConsultaRepository consultaRepository;
+    public void reservar(DatosReservaConsulta datos) {
+
+        if (!pacienteRepository.existsById(datos.idPaciente())) {
+            throw new ValidacionException("El paciente con ese id, no existe");
+        }
+
+        if (datos.idMedico() != null && !medicoRepository.existsById(datos.idMedico())) {
+            throw new ValidacionException("El médico con ese id, no existe");
+        }
+
+        //var medico = medicoRepository.findById(datos.idMedico()).get(); // error si no encuentra el medico
+        var medico = elegirMedico(datos);
+        var paciente = pacienteRepository.findById(datos.idPaciente()).get();
+        var consulta = new Consulta(null, medico ,paciente, datos.fecha());          //guarda el medico y el paciente en la consulta
+        consultaRepository.save(consulta);                  //guarda la consulta en nuestra bd
+
+
+    }
+
+    private Medico elegirMedico(DatosReservaConsulta datos) {
+
+        if (datos.idMedico() != null) {
+            return medicoRepository.getReferenceById(datos.idMedico());
+        }
+        if (datos.especialidad() == null) {
+            throw new ValidacionException("Es necesario elegir una especialidad, cuando no se elije a un médico");
+
+        }
+
+        return medicoRepository.elegirMedicoAleatorioDisponibleEnLaFecha(datos.especialidad(),datos.fecha());
+
+    }
+}
