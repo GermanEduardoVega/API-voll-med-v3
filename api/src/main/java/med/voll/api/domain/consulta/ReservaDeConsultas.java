@@ -32,7 +32,7 @@ public class ReservaDeConsultas {
         //var medico = medicoRepository.findById(datos.idMedico()).get(); // error si no encuentra el medico
         var medico = elegirMedico(datos);
         var paciente = pacienteRepository.findById(datos.idPaciente()).get();
-        var consulta = new Consulta(null, medico ,paciente, datos.fecha());          //guarda el medico y el paciente en la consulta
+        var consulta = new Consulta(null, medico ,paciente, datos.fecha(), null);          //guarda el medico y el paciente en la consulta
         consultaRepository.save(consulta);                  //guarda la consulta en nuestra bd
 
 
@@ -50,5 +50,15 @@ public class ReservaDeConsultas {
 
         return medicoRepository.elegirMedicoAleatorioDisponibleEnLaFecha(datos.especialidad(),datos.fecha());
 
+    }
+
+
+    public void cancelar(DatosCancelamientoConsulta datos) {
+
+        if (!consultaRepository.existsById(datos.idConsulta())) {
+            throw new ValidacionException("Id de la consulta informado no existe!");
+        }
+        var consulta = consultaRepository.getReferenceById(datos.idConsulta());
+        consulta.cancelar(datos.motivo());
     }
 }
