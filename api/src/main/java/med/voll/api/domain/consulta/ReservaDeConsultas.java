@@ -2,11 +2,14 @@ package med.voll.api.domain.consulta;
 
 import jakarta.validation.ValidationException;
 import med.voll.api.domain.ValidacionException;
+import med.voll.api.domain.consulta.validaciones.ValidadorDeConsultas;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.medico.MedicoRepository;
 import med.voll.api.domain.paciente.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReservaDeConsultas {
@@ -19,6 +22,9 @@ public class ReservaDeConsultas {
 
     @Autowired
     private ConsultaRepository consultaRepository;
+
+    @Autowired
+    private List<ValidadorDeConsultas> validadores;
     public void reservar(DatosReservaConsulta datos) {
 
         if (!pacienteRepository.existsById(datos.idPaciente())) {
@@ -28,6 +34,9 @@ public class ReservaDeConsultas {
         if (datos.idMedico() != null && !medicoRepository.existsById(datos.idMedico())) {
             throw new ValidacionException("El médico con ese id, no existe");
         }
+
+        //validaciones
+        validadores.forEach(objetoValidador -> objetoValidador.validar(datos));
 
         //var medico = medicoRepository.findById(datos.idMedico()).get(); // error si no encuentra el medico
         var medico = elegirMedico(datos);
