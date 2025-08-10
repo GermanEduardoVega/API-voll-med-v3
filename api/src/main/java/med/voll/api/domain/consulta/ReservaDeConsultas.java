@@ -1,6 +1,6 @@
 package med.voll.api.domain.consulta;
 
-import jakarta.validation.ValidationException;
+
 import med.voll.api.domain.ValidacionException;
 import med.voll.api.domain.consulta.validaciones.ValidadorDeConsultas;
 import med.voll.api.domain.medico.Medico;
@@ -25,7 +25,7 @@ public class ReservaDeConsultas {
 
     @Autowired
     private List<ValidadorDeConsultas> validadores;
-    public void reservar(DatosReservaConsulta datos) {
+    public DatosDetalleConsulta reservar(DatosReservaConsulta datos) {
 
         if (!pacienteRepository.existsById(datos.idPaciente())) {
             throw new ValidacionException("El paciente con ese id, no existe");
@@ -40,11 +40,14 @@ public class ReservaDeConsultas {
 
         //var medico = medicoRepository.findById(datos.idMedico()).get(); // error si no encuentra el medico
         var medico = elegirMedico(datos);
+        if (medico == null) {
+            throw new ValidacionException("no existe un medico disponible en ese horario");
+        }
         var paciente = pacienteRepository.findById(datos.idPaciente()).get();
         var consulta = new Consulta(null, medico ,paciente, datos.fecha(), null);          //guarda el medico y el paciente en la consulta
         consultaRepository.save(consulta);                  //guarda la consulta en nuestra bd
 
-
+        return new DatosDetalleConsulta(consulta);
     }
 
     private Medico elegirMedico(DatosReservaConsulta datos) {

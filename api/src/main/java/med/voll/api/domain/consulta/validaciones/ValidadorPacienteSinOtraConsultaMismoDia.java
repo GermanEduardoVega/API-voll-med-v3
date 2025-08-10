@@ -15,7 +15,7 @@ public class ValidadorPacienteSinOtraConsultaMismoDia implements ValidadorDeCons
         var primerHorario = datos.fecha().withHour(7);
         var ultimoHorario = datos.fecha().withHour(18);
 
-        var pacienteTieneOtraConsultaEnElDia = consultaRepository.existByPacienteIdAndFechaBetween(
+        var pacienteTieneOtraConsultaEnElDia = consultaRepository.existsByPacienteIdAndFechaBetween(
                 datos.idPaciente(), primerHorario, ultimoHorario);
 
         if (pacienteTieneOtraConsultaEnElDia) {

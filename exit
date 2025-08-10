@@ -1,0 +1,59 @@
+[33mcommit ab281b87d563f86f5d838e8eb45e0caac39616f1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Sat Aug 9 19:26:09 2025 -0300
+
+    Aplicando principios SOLID, Patron Strategy | validaciones con @Component y autowired | inyeccion desde la Interfaz ValidadorDeConsultas
+
+[33mcommit 1be1c55e568acd184b8471386ff3c70fb3706b63[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Sat Aug 9 14:49:01 2025 -0300
+
+    agregando clases de validacion
+
+[33mcommit 826833702a4ecc2f31a081182a3813f4d60c84fc[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Sat Aug 9 13:20:11 2025 -0300
+
+    se agrega el cancelamiento de la consulta
+
+[33mcommit 3677329bcdc6f1f02a486ca2488eba97f8f9db05[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Sat Aug 9 12:50:12 2025 -0300
+
+    aplicando con anotacion la query
+
+[33mcommit 68a84fd4fbe97a62d8642274b1e408a51b0ec311[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Thu Aug 7 23:22:51 2025 -0300
+
+    Nueva funcionalidad | Clase Service | Validacion de Integridad Eleccion del medico Aleatorio | Agrega validación de integridad en la capa de servicio para la especialidad
+
+[33mcommit 10a4745c47ab594013fc13dcc63c2c78e1474151[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Thu Aug 7 13:29:35 2025 -0300
+
+    nueva funcionalidad | agregacion de propiedad baseline para el estado inicial/ punto de partida a partir del cual Flyway comienza a aplicar las migraciones | agregar las consultas DatosDetalleConsulta , DatosReservaConsulta
+
+[33mcommit d72627a5d3ae6bd538c475928abb1bd3738e95da[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Thu Aug 7 10:46:34 2025 -0300
+
+    agregando proyecto anterior
+
+[33mcommit 26b786332621bb1848dd165651444a6c481824f3[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Thu Aug 7 09:30:01 2025 -0300
+
+    desempaquetando initializr
+
+[33mcommit c4c6e5e0f4ab901684ba3d10f12a4659a8fbcae4[m
+Author: GermanEduardoVega <german.vega@alumnos.frm.utn.edu.ar>
+Date:   Thu Aug 7 09:25:04 2025 -0300
+
+    primer commit
+
+[33mcommit 6022a55ee1dead81f33fe08d8aff626e32d3b24c[m
+Author: GermanEduardoVega <103130114+GermanEduardoVega@users.noreply.github.com>
+Date:   Thu Aug 7 09:11:47 2025 -0300
+
+    Initial commit
